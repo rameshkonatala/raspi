@@ -71,6 +71,7 @@ while True:
         date=str(current_time.strftime('%Y-%m-%d %H:%M:%S'))
         c.execute("INSERT INTO speedoValues(unix,datestamp,speed,trip_dist,avg_time) VALUES (?, ?, ?, ?, ?)",(unix,date,kmph,trip_dist,avg_time))
         conn.commit()
+	print unix,date,kmph,avg_time
 
 c.close()
 conn.close()

@@ -7,6 +7,17 @@ Copyright 2015
 
 import smbus
 import math,time
+from datetime import datetime
+import sqlite3
+
+conn=sqlite3.connect('accgyro.db')
+c=conn.cursor()
+
+
+def create_table():
+    c.execute("CREATE TABLE IF NOT EXISTS accgyroValues(unix REAL,datestamp TEXT,temperature REAL,accX REAL,accY REAL,accZ REAL,roll REAL,pitch REAL)")
+
+
 
 class MPU6050:
 
@@ -254,24 +265,37 @@ class MPU6050:
 
         return [accel, gyro, temp]
 
+create_table()
+
 while True:
     if __name__ == "__main__":
+
         mpu = MPU6050(0x68)
-        print(mpu.get_temp())
+        temp=mpu.get_temp()
         accel_data = mpu.get_accel_data()
-        print(accel_data['x'])
-        print(accel_data['y'])
-        print(accel_data['z'])
+        accX=(accel_data['x'])
+        accY=(accel_data['y'])
+        accZ=(accel_data['z'])
         gyro_data = mpu.get_gyro_data()
-        print(gyro_data['x'])
-        print(gyro_data['y'])
-        print(gyro_data['z'])
+        #print(gyro_data['x'])
+        #print(gyro_data['y'])
+        #print(gyro_data['z'])
         ax=accel_data['x']
         ay=accel_data['y']
         az=accel_data['z']
         roll  = (math.atan2(ay, math.sqrt((ax*ax) + (az*az)))*180.0)/math.pi;
         pitch = (math.atan2(ax, math.sqrt((ay*ay) + (az*az)))*180.0)/math.pi;
-        print roll
-        print pitch
-        time.sleep(0.05)
+        
+        current_time=datetime.now()
+        unix=time.time()
+        date=str(current_time.strftime('%Y-%m-%d %H:%M:%S'))
+
+        time.sleep(0.01)
+        c.execute("INSERT INTO accgyroValues(unix,datestamp,temperature,accX,accY,accZ,roll,pitch) VALUES (?, ?, ?, ?, ? ,? ,? ,? )",(unix,date,temp,accX,accY,accZ,roll,pitch))
+        conn.commit()
+        print unix,date,temp,accX,accY,accZ,roll,pitch
+
+
+c.close()
+conn.close()
 
