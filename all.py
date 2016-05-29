@@ -1,13 +1,62 @@
-"""This program handles the communication over I2C
-between a Raspberry Pi and a MPU-6050 Gyroscope / Accelerometer combo.
-Made by: MrTijn/Tijndagamer
-Released under the MIT License
-Copyright 2015
-"""
 
+#speedometer
+from time import sleep
+import RPi.GPIO as GPIO
+import math,random,time
+from datetime import datetime
+import sqlite3
+
+#gps
+import serial
+import pynmea2
+
+#accgyro
 import smbus
 import math,time
 
+
+
+conn=sqlite3.connect('sensors.db')
+c=conn.cursor()
+
+def create_table():
+        c.execute("CREATE TABLE IF NOT EXISTS sensorValues(unix REAL,datestamp TEXT,speed REAL,trip_dist REAL,avg_time REAL,latitude REAL,longitude REAL,temperature REAL,accX REAL,accY REAL,accZ REAL,roll REAL,pitch REAL)")
+
+
+
+
+
+#speedometer
+def rps(channel):
+        global time_interval,counter
+        counter+=1
+        if len(time_interval)==2:
+                time_interval[1]=time_interval[0]
+                time_interval[0]=datetime.now()
+                #print (time_interval[0]-time_interval[1]).microseconds
+        else:
+                time_interval.append(datetime.now())
+
+def calculate_speed(r_cm):
+        global time_interval
+        if len(time_interval)==0 or len(time_interval)==1:
+                km_per_hour=0
+        else:
+                time_diff=time_interval[0]-time_interval[1]
+                time_diff=time_diff.microseconds*1.0/(10**6)
+                circ_cm = (2 * math.pi) * r_cm
+                dist_km = (circ_cm) / 100000.0 # convert to kilometres
+                km_per_sec = (dist_km ) / time_diff
+                km_per_hour = km_per_sec * 3600 # convert to distance per hour
+        return km_per_hour
+
+def calculate_trip_speed(counter,r_cm):
+        trip_distance=(2*math.pi*r_cm*counter)
+        return trip_distance/100000
+
+
+
+#accgyro
 class MPU6050:
 
     # Global Variables
@@ -254,24 +303,75 @@ class MPU6050:
 
         return [accel, gyro, temp]
 
+
+
+
+#speedometer
+global kmph
+global trip_distance,start_time
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+start_time=0
+time_interval=[]
+counter=0
+GPIO.add_event_detect(16, GPIO.RISING, callback=rps, bouncetime=100)
+
+
+
+#gps
+serialStream = serial.Serial("/dev/ttyAMA0", 9600,timeout=0.5)
+
+
+
+create_table()
 while True:
-    if __name__ == "__main__":
+        
+
+        #speedometer
+        start_time+=1
+        
+        current_time=datetime.now()
+        if len(time_interval)==2 and (current_time-time_interval[0]).seconds>=1:
+                time_interval[0]=current_time
+                kmph=0.0
+        else:
+                kmph=calculate_speed(36.0)
+        trip_dist=calculate_trip_speed(counter,36.0)
+        avg_time=start_time/60.0
+	
+        unix=time.time()
+        date=str(current_time.strftime('%Y-%m-%d %H:%M:%S'))
+
+        #gps
+        sentence = serialStream.readline()
+        if sentence.find('GGA')>0:
+		data = pynmea2.parse(sentence)
+	
+        lat=data.latitude
+        lon=data.longitude
+        
+        #accgyro
         mpu = MPU6050(0x68)
-        print(mpu.get_temp())
+        temp=mpu.get_temp()
         accel_data = mpu.get_accel_data()
-        print(accel_data['x'])
-        print(accel_data['y'])
-        print(accel_data['z'])
+        accX=(accel_data['x'])
+        accY=(accel_data['y'])
+        accZ=(accel_data['z'])
         gyro_data = mpu.get_gyro_data()
-        print(gyro_data['x'])
-        print(gyro_data['y'])
-        print(gyro_data['z'])
+        #print(gyro_data['x'])
+        #print(gyro_data['y'])
+        #print(gyro_data['z'])
         ax=accel_data['x']
         ay=accel_data['y']
         az=accel_data['z']
         roll  = (math.atan2(ay, math.sqrt((ax*ax) + (az*az)))*180.0)/math.pi;
         pitch = (math.atan2(ax, math.sqrt((ay*ay) + (az*az)))*180.0)/math.pi;
-        print roll
-        print pitch
-        time.sleep(0.05)
+        
+
+        c.execute("INSERT INTO sensorValues(unix,datestamp,speed,trip_dist,avg_time,latitude,longitude,temperature,accX,accY,accZ,roll,pitch) VALUES (?, ?, ?, ?, ? ,? ,? ,? ,? ,? ,? ,? ,? )",(unix,date,kmph,trip_dist,avg_time,lat,lon,temp,accX,accY,accZ,roll,pitch))
+        conn.commit()
+        print "done"
+
+c.close()
+conn.close()
 
