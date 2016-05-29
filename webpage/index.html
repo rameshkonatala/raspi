@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+	<script type="text/javascript" src="js/canvas.js"></script>
+	<script type="text/javascript" src="js/map.js"></script>
+
+	<script type="text/javascript" src="js/canvasjs.min.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDskVwf9c_yV2fXOWfeJZKjY7BcNH4V9xU&callback=initMap" async defer></script>
+	<title>Display Console</title>
+</head>
+<body>
+		<div class="map container">
+			<div id="map"></div>
+		</div>
+		
+		<div class="tilt container">
+			<div style="-webkit-transform: rotate(0deg);" class="insidetilt">
+				<img src="css/images/line.png">
+			</div>
+			<div style="-webkit-transform: rotate(90deg);" class="insidetilt">
+				<img src="css/images/line.png">
+			</div>
+			
+		</div>
+
+		<div class="graph container">
+			<div id="chartContainer"></div>			
+		</div>
+	
+		<div class="speedo container">
+			<div class="time">
+				<p id="dynamic">07:03</p>
+				<p id="static">pm</p>
+			</div>
+			<div id="bottom_display">
+				<div class="speed">
+					<p id="dynamic">48</p>
+					<p id="static">kmph</p>
+				</div>
+				<div class="avg_dist">
+					<p id="dynamic">22.3</p>
+					<p id="static">km</p>
+				</div>
+				<div class="avg_time">
+					<p id="dynamic">13</p>
+					<p id="static">min</p>
+				</div>
+			</div>
+		</div>
+		
+	
+</body>
+</html>
