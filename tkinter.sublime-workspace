@@ -1,0 +1,282 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"url",
+				"urlopen"
+			],
+			[
+				"sell",
+				"sellDates"
+			],
+			[
+				"da",
+				"data"
+			],
+			[
+				"bt",
+				"BTCe_page"
+			],
+			[
+				"anim",
+				"animate"
+			],
+			[
+				"ani",
+				"animation"
+			],
+			[
+				"y",
+				"yList"
+			],
+			[
+				"Fi",
+				"FigureCanvasTkAgg"
+			],
+			[
+				"Page",
+				"PageThree"
+			],
+			[
+				"__",
+				"__init__"
+			],
+			[
+				"Pa",
+				"PageTwo"
+			],
+			[
+				"s",
+				"seaofBTCapp"
+			],
+			[
+				"pr",
+				"printNumber"
+			],
+			[
+				"text",
+				"text1"
+			],
+			[
+				"retu",
+				"returnRandomNumber"
+			],
+			[
+				"the",
+				"theLabel"
+			],
+			[
+				"km",
+				"km_per_hour"
+			],
+			[
+				"c",
+				"current_time"
+			],
+			[
+				"time",
+				"time_interval"
+			],
+			[
+				"pre",
+				"prev_time"
+			],
+			[
+				"t",
+				"tdelta"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/ramesh/Desktop/tkinter"
+	],
+	"file_history":
+	[
+		"/home/ramesh/Desktop/tkinter/9.py",
+		"/home/ramesh/Desktop/tkinter/8.py",
+		"/home/ramesh/Desktop/tkinter/7.py",
+		"/home/ramesh/Desktop/tkinter/sampleData.txt",
+		"/home/ramesh/Desktop/tkinter/6.py",
+		"/home/ramesh/Desktop/tkinter/5.py",
+		"/home/ramesh/Desktop/programs/speedometer.py",
+		"/home/ramesh/Desktop/programs/tkinter.py",
+		"/home/ramesh/Desktop/programs/gps.py",
+		"/home/ramesh/Desktop/demo/demo/settings.py",
+		"/home/ramesh/Desktop/tkinter/3.py",
+		"/home/ramesh/Desktop/tkinter/2.py",
+		"/home/ramesh/Desktop/programs/accgyro.py",
+		"/home/ramesh/Desktop/programs/temp2.py",
+		"/home/ramesh/Desktop/main.py",
+		"/home/ramesh/Desktop/programs/temp1.py",
+		"/home/ramesh/Desktop/temp5.py",
+		"/home/ramesh/Desktop/programs/sample.py",
+		"/home/ramesh/Desktop/programs/test.py",
+		"/home/ramesh/Desktop/temp.py",
+		"/home/ramesh/Desktop/temp2.py",
+		"/home/ramesh/Desktop/gps.py",
+		"/home/ramesh/Desktop/temp4.py",
+		"/home/ramesh/Desktop/temp3.py",
+		"/home/ramesh/Desktop/speedometer.py",
+		"/home/ramesh/Desktop/display/tkinterBasic.py"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"tk.Button",
+			"tkinter"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"ttk.Button",
+			"Tkinter"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "tkinter.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
