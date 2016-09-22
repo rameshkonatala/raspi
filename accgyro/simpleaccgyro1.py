@@ -293,7 +293,7 @@ while True:
         time.sleep(0.01)
         c.execute("INSERT INTO accgyroValues(unix,datestamp,temperature,accX,accY,accZ,roll,pitch) VALUES (?, ?, ?, ?, ? ,? ,? ,? )",(unix,date,temp,accX,accY,accZ,roll,pitch))
         conn.commit()
-        print unix,date,temp,accX,accY,accZ,roll,pitch
+        #print unix,date,temp,accX,accY,accZ,roll,pitch
 
 
 c.close()

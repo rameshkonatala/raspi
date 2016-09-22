@@ -25,8 +25,6 @@ while True:
         date=str(current_time.strftime('%Y-%m-%d %H:%M:%S'))
         c.execute("INSERT INTO gpsValues(unix,datestamp,lat,lon) VALUES (?, ?, ?, ?)",(unix,date,lat,lon))
         conn.commit()
-	print lat,lon
-
 
 c.close()
 conn.close()
