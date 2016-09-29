@@ -61,7 +61,7 @@ while True:
         sleep(1)
         current_time=datetime.now()
         if len(time_interval)==2 and (current_time-time_interval[0]).seconds>=1:
-                time_interval[0]=current_time
+                #time_interval[0]=current_time
                 kmph=0.0
         else:
                 kmph=calculate_speed(36.0)
