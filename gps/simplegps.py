@@ -27,4 +27,8 @@ while True:
         conn.commit()
 
 c.close()
+<<<<<<< HEAD
 conn.close()
+=======
+conn.close()
+>>>>>>> c89021b43549ccb14ff5b58f84de914b940172ce

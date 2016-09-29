@@ -319,7 +319,11 @@ GPIO.add_event_detect(16, GPIO.RISING, callback=rps, bouncetime=100)
 
 
 #gps
+<<<<<<< HEAD
 serialStream = serial.Serial("/dev/ttyAMA0", 9600, timeout=0.5)
+=======
+serialStream = serial.Serial("/dev/ttyAMA0", 9600,timeout=0.5)
+>>>>>>> c89021b43549ccb14ff5b58f84de914b940172ce
 
 
 
@@ -344,6 +348,7 @@ while True:
 
         #gps
         sentence = serialStream.readline()
+<<<<<<< HEAD
         if sentence.find('GGA') > 0:
                 data = pynmea2.parse(sentence)
                 lat=data.latitude
@@ -374,3 +379,36 @@ while True:
 
 c.close()
 conn.close()
+=======
+        if sentence.find('GGA')>0:
+		data = pynmea2.parse(sentence)
+	
+        lat=data.latitude
+        lon=data.longitude
+        
+        #accgyro
+        mpu = MPU6050(0x68)
+        temp=mpu.get_temp()
+        accel_data = mpu.get_accel_data()
+        accX=(accel_data['x'])
+        accY=(accel_data['y'])
+        accZ=(accel_data['z'])
+        gyro_data = mpu.get_gyro_data()
+        #print(gyro_data['x'])
+        #print(gyro_data['y'])
+        #print(gyro_data['z'])
+        ax=accel_data['x']
+        ay=accel_data['y']
+        az=accel_data['z']
+        roll  = (math.atan2(ay, math.sqrt((ax*ax) + (az*az)))*180.0)/math.pi;
+        pitch = (math.atan2(ax, math.sqrt((ay*ay) + (az*az)))*180.0)/math.pi;
+        
+
+        c.execute("INSERT INTO sensorValues(unix,datestamp,speed,trip_dist,avg_time,latitude,longitude,temperature,accX,accY,accZ,roll,pitch) VALUES (?, ?, ?, ?, ? ,? ,? ,? ,? ,? ,? ,? ,? )",(unix,date,kmph,trip_dist,avg_time,lat,lon,temp,accX,accY,accZ,roll,pitch))
+        conn.commit()
+        print "done"
+
+c.close()
+conn.close()
+
+>>>>>>> c89021b43549ccb14ff5b58f84de914b940172ce

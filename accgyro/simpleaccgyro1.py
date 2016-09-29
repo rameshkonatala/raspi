@@ -13,9 +13,17 @@ import sqlite3
 conn=sqlite3.connect('accgyro.db')
 c=conn.cursor()
 
+<<<<<<< HEAD
 def create_table():
     c.execute("CREATE TABLE IF NOT EXISTS accgyroValues(unix REAL,datestamp TEXT,temperature REAL,accX REAL,accY REAL,accZ REAL,roll REAL,pitch REAL)")
 
+=======
+
+def create_table():
+    c.execute("CREATE TABLE IF NOT EXISTS accgyroValues(unix REAL,datestamp TEXT,temperature REAL,accX REAL,accY REAL,accZ REAL,roll REAL,pitch REAL)")
+
+
+>>>>>>> c89021b43549ccb14ff5b58f84de914b940172ce
 
 class MPU6050:
 
@@ -263,6 +271,8 @@ class MPU6050:
 
         return [accel, gyro, temp]
 
+create_table()
+
 while True:
     if __name__ == "__main__":
 
@@ -289,8 +299,16 @@ while True:
         time.sleep(0.01)
         c.execute("INSERT INTO accgyroValues(unix,datestamp,temperature,accX,accY,accZ,roll,pitch) VALUES (?, ?, ?, ?, ? ,? ,? ,? )",(unix,date,temp,accX,accY,accZ,roll,pitch))
         conn.commit()
+<<<<<<< HEAD
         print "done"
 
+=======
+        #print unix,date,temp,accX,accY,accZ,roll,pitch
+
+
+c.close()
+conn.close()
+>>>>>>> c89021b43549ccb14ff5b58f84de914b940172ce
 
 c.close()
 conn.close()
