@@ -58,7 +58,6 @@ GPIO.add_event_detect(16, GPIO.RISING, callback=rps, bouncetime=100)
 
 while True:
         start_time+=1
-        sleep(1)
         current_time=datetime.now()
         if len(time_interval)==2 and (current_time-time_interval[0]).seconds>=1:
                 #time_interval[0]=current_time
@@ -74,6 +73,7 @@ while True:
         #c.execute("INSERT INTO speedoValues(unix,datestamp,speed,trip_dist,avg_time) VALUES (?, ?, ?, ?, ?)",(unix,date,kmph,trip_dist,avg_time))
         #conn.commit()
 	print "Speed is {} and dist is {}".format(kmph,trip_dist)
-
+        sleep(1)
+        
 c.close()
 conn.close()
