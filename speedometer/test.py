@@ -69,8 +69,10 @@ while True:
         avg_time=start_time/60.0
 	unix=time.time()
         date=str(current_time.strftime('%Y-%m-%d %H:%M:%S'))
-        c.execute("INSERT INTO speedoValues(unix,datestamp,speed,trip_dist,avg_time) VALUES (?, ?, ?, ?, ?)",(unix,date,kmph,trip_dist,avg_time))
-        conn.commit()
+        d = {'speed':kmph,'date':date,'trip_dist':trip_dist,'avg_time':avg_time}
+        requests.post('http://127.0.0.1:5000',params = d)
+        #c.execute("INSERT INTO speedoValues(unix,datestamp,speed,trip_dist,avg_time) VALUES (?, ?, ?, ?, ?)",(unix,date,kmph,trip_dist,avg_time))
+        #conn.commit()
 	print "Speed is {} and dist is {}".format(kmph,trip_dist)
 
 c.close()

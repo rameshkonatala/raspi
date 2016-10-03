@@ -21,7 +21,15 @@ def rps(channel):
 		#print (time_interval[0]-time_interval[1]).microseconds
 	else:
 		time_interval.append(datetime.now())
-    
+
+def rps2(channel):
+	global time1 ,time2,counter
+	counter+=1
+		time_interval[0]=datetime.now()
+		#print (time_interval[0]-time_interval[1]).microseconds
+	else:
+		time_interval.append(datetime.now())
+
 def calculate_speed(r_cm):
 	global time_interval
 	if len(time_interval)==0 or len(time_interval)==1:
