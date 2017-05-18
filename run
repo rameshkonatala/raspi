@@ -1,7 +1,0 @@
-#!/bin/bash
-cd gps
-python simplegps.py &
-cd ../accgyro
-python simpleaccgyro1.py &
-cd ../speedometer
-python test.py &
